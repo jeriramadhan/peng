@@ -310,7 +310,7 @@
             var xhr = new XMLHttpRequest();
             xhr.open('POST', "2c-ajax-track.php", true);
             xhr.onload = function () {
-              var res = JSON.parse(this.response);
+              var res = JSON.parse(JSON.stringify((this.response));
               // OK
               if (res.status==1) {
                 track.display.innerHTML = "Lat: " + pos.coords.latitude + " Lng: " + pos.coords.longitude;

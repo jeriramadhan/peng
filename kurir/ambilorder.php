@@ -352,16 +352,16 @@ google.maps.event.addDomListener(window, 'load', init);
           navigator.geolocation.getCurrentPosition(function (pos) {
             // AJAX DATA
             var data = new FormData();
-            data.append("req", "update");
-            data.append("rider_id", track.rider);
-            data.append("lat", pos.coords.latitude);
-            data.append("lng", pos.coords.longitude);
+            data.append('req', 'update');
+            data.append('rider_id', track.rider);
+            data.append('lat', pos.coords.latitude);
+            data.append('lng', pos.coords.longitude);
 
             // AJAX
             var xhr = new XMLHttpRequest();
-            xhr.open("POST", "2c-ajax-track.php", true);
+            xhr.open('POST', "2c-ajax-track.php", true);
             xhr.onload = function () {
-              var res = JSON.parse(this.response);
+              var res = JSON.parse(JSON.stringify((this.response));
               // OK
               if (res.status==1) {
                 track.display.innerHTML = "Lat: " + pos.coords.latitude + " Lng: " + pos.coords.longitude;
