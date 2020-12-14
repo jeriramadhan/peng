@@ -28,7 +28,7 @@
 				values ('$nama', '$username', '$password', '$tanggal', '$alamat', '$no_hp', '$nama_baru')";
 		$execute = mysqli_query($db, $sql);
 		
-		echo "<Center><h2><br>Terima Kasih<br>Silahkan Login Untuk Menggunakan Fitur e-Kurir</h2></center>
+		echo "<Center><h2><br>Terima Kasih<br>Silahkan Login Untuk Menggunakan Fitur e-Kurir PT. Fajar Cahaya Media </h2></center>
 			<meta http-equiv='refresh' content='2;url=../../../kurir'>";
 	}
 	else{

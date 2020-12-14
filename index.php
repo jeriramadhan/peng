@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>e-Kurir</title>
+    <title>e-Kurir PT. Fajar Cahaya Media </title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
      <!-- Bootstrap Core CSS -->
@@ -77,7 +77,7 @@
                          <center> <a href="http://unmul.ac.id/"><img src="images/r.jpg" alt="Universitas Mulawarman"width='170'></a></center><br>
                         </td>
                         <td>
-                        <p><strong>e-Kurir</strong> adalah sebuah perusahaan teknologi yang bertujuan untuk meningkatkan mobilitas pekerja kurir. Kegiatan : Jemput - Antar - Sampai. Para Kurir mengatakan bahwa pendapatan mereka meningkat semenjak bergabung sebagai mitra, mereka juga mendapatkan santunan kesehatan dan kecelakaan, serta mendapat akses ke lebih banyak pelanggan melalui website kami.</p>
+                        <p><strong>e-Kurir PT. Fajar Cahaya Media  PT. Fajar Cahaya Media </strong> adalah sebuah perusahaan teknologi yang bertujuan untuk meningkatkan mobilitas pekerja kurir. Kegiatan : Jemput - Antar - Sampai. Para Kurir mengatakan bahwa pendapatan mereka meningkat semenjak bergabung sebagai mitra, mereka juga mendapatkan santunan kesehatan dan kecelakaan, serta mendapat akses ke lebih banyak pelanggan melalui website kami.</p>
                         </td>
 
                       </tr>
