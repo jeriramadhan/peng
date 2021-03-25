@@ -91,7 +91,7 @@
   									where no_transaksi = '".$no_transaksi."'";
   									
   									$execute = mysqli_query($db, $sql1);					
-  									echo "<meta http-equiv='refresh' content='0;url=ambilorder.php?no_transaksi=".$no_transaksi."'>";	
+										echo "<meta http-equiv='refresh' content='0;url=ambilorder.php?no_transaksi=".$no_transaksi."'>";
 										?>
 										
   									<div class="box-body">
@@ -243,9 +243,19 @@ window.alert('Directions request failed due to ' + status);
  
 google.maps.event.addDomListener(window, 'load', init);
 </script>
+<?php 
+$no = $data['no_hp_penerima'];
+$ptn = "/^0/"; 
+$rpltxt = "+62";  // Replacement string
+$nohp = preg_replace($ptn, $rpltxt, $no); ?>
 <body>
 <input type="hidden" id="start" size="50" placeholder="<?php echo $data['alamat_asal']?>" value="<?php echo $data['alamat_asal']?>" readonly>
 <input type="hidden" id="end" size="50" placeholder="<?php echo $data['alamat_tujuan']?>" value="<?php echo $data['alamat_tujuan']?>" readonly>
+<br>
+<!-- <a class="btn btn-primary" href="https://api.callmebot.com/whatsapp.php?phone=<?php echo $nohp?>&text=Pesanan+<?php echo $no_transaksi ?>+Sedang Proses+Pengantaran+Oleh +<?php echo $_SESSION['nama']?>+Menuju+Ke+<?php echo $data['alamat_tujuan']?>&apikey=961961"> Kirim Notifikasi</a> -->
+<a class="btn btn-warning" href="https://api.callmebot.com/whatsapp.php?phone=<?php echo $nohp?>&text=Sistem+Notifikasi+Pengiriman%0D%0AID+Pesanan+%3A+<?php echo $no_transaksi ?>%0D%0AStatus+%3A+<?php echo $data['status']?>%0D%0ADikirim+oleh+kurir+%3A+<?php echo $_SESSION['nama']?>%0D%0AMenuju+%3A+<?php echo $data['alamat_tujuan']?>%0D%0ASelengkapnya+%3A+https://pengiriman.jtech.my.id/pelanggan/detail-orderterkirim2.php?no_transaksi=<?php echo $no_transaksi ?>&apikey=961961">Kirim Notifikasi</a>
+<br>
+<br>
 <button id="lihat">Lihat Rute Pengiriman</button>
 <br><br>
 <div id="maps" style="width: 800px; height: 400px;"></div>
