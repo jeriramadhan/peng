@@ -71,6 +71,7 @@
                   <h3 class="box-title">Data Transaksi Terkirim</h3>
                   <div class="box-tools pull-right"></div> 
                 </div><!-- /.box-header -->
+                <button onclick="window.print()">Cetak</button>
               <div class="box-body">
 
                 <!-- <form action='admin.php' method="POST">

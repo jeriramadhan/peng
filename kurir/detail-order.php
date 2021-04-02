@@ -71,6 +71,7 @@ include "login/ceksession.php";?>
                 <!-- TO DO List -->
                 <div class="box box-primary">
                   <div class="box-header">
+                  
                     <i class="ion ion-clipboard"></i>
                     <h3 class="box-title">Detail Data Order</h3>
                   <!-- <div class="box-tools pull-right">
@@ -83,6 +84,7 @@ include "login/ceksession.php";?>
                     </ul>
                   </div> -->
                 </div><!-- /.box-header -->
+                <button onclick="window.print()">Cetak</button>
                 <div class="box-body">
                   <div class="form-panel">
                     <table id="example" class="table table-hover table-bordered">

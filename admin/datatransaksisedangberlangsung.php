@@ -1,6 +1,7 @@
-<?php 
-session_start(); 
-include "login/ceksession.php";?>
+<?php
+session_start();
+include "login/ceksession.php";
+?>
 <html>
 <head>
   <meta charset="utf-8">
@@ -33,8 +34,8 @@ include "login/ceksession.php";?>
      <link rel="stylesheet" href="../assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
      <!-- css table datatables/dataTables -->
      <link rel="stylesheet" href="../assets/plugins/datatables/dataTables.bootstrap.css"/>
-</head>
 
+   </head>
    <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
 
@@ -48,11 +49,11 @@ include "login/ceksession.php";?>
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Data Order 
+            Data Transaksi
           </h1>
           <ol class="breadcrumb">
             <li><a href="index.php"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li class="active">Order</li>
+            <li class="active">Transaksi</li>
           </ol>
         </section>
 
@@ -66,15 +67,12 @@ include "login/ceksession.php";?>
               <!-- TO DO List -->
               <div class="box box-primary">
                 <div class="box-header">
-                
                   <i class="ion ion-clipboard"></i>
-                  <h3 class="box-title">Data Order</h3>
-                  <div class="box-tools pull-right">
-                  </div> 
+                  <h3 class="box-title">Data Transaksi Sedang Berlangsung</h3>
+                  <div class="box-tools pull-right"></div> 
                 </div><!-- /.box-header -->
                 <button onclick="window.print()">Cetak</button>
-
-                <div class="box-body">
+              <div class="box-body">
 
                 <!-- <form action='admin.php' method="POST">
           
@@ -82,66 +80,54 @@ include "login/ceksession.php";?>
            <input type='submit' value='Cari Data' class="btn btn-sm btn-primary" /> <a href='admin.php' class="btn btn-sm btn-success" >Refresh</i></a>
           	</div>
           </form>-->
-          <?php 
-          include '../koneksi/koneksi.php';
+          <div class="table">
+            <?php
+            include '../koneksi/koneksi.php';
+            $sql1  		= "SELECT * FROM tb_transaksi inner join tb_pelanggan on tb_transaksi.pengirim = tb_pelanggan.id_pelanggan where status LIKE '%Proses%' order by no_transaksi asc";                        
+            $query1  	= mysqli_query($db, $sql1);
+            $total  	= mysqli_num_rows($query1);
+            if ($total == 0) {
+              echo"<center><h2>Tidak Ada Transaksi Belum Terkirim</h2></center>";
+            }
+            else{?>
+            <table id="lookup" class="table table-bordered table-hover">  
+             <thead bgcolor="eeeeee" align="center">
+               <tr>
+                 <th>No Transaksi</th>
+                 <th>Nama Barang</th>
+                 <th>Alamat Asal</th>
+                 <th>Alamat Tujuan</th>	   
+                 <th>Pengirim</th>
+                 <th>Penerima</th>
+                 <th>status</th>
+                 <th class="text-center"> Action </th>	  
+               </tr>
+             </thead>
+             <?php
+             while($data = mysqli_fetch_array($query1)){
+              echo'<tr>
+              <td>	'. $data['no_transaksi'].'   		</td>
+              <td>	'. $data['nama_barang'].'			</td>
+              <td>	'. $data['alamat_asal'].'			</td>
+              <td>	'. $data['alamat_tujuan'].'  		</td>
+              <td>	'. $data['nama_pelanggan'].'  		</td>
+              <td>	'. $data['penerima'].'				</td>
+              <td>	'. $data['status'].'				</td>
+              <td style="text-align:center;">
+              <a href=detail-transaksibelumterkirim.php?no_transaksi='.$data['no_transaksi'].'>Detail</a></td>
+              </tr>';
+            }
+            ?>
+            <tbody>		 
+            </tbody>
+          </table>
+          <?php } ?>
+        </div>
+      </div><!-- /.box-body -->
 
-          $sql  		= "SELECT * FROM tb_transaksi inner join tb_pelanggan on tb_transaksi.pengirim = tb_pelanggan.id_pelanggan where status NOT LIKE 'Belum Terkirim' and status NOT LIKE 'Terkirim' and kurir LIKE '".$_SESSION['id']."' order by no_transaksi asc";                        
-          $query  	= mysqli_query($db, $sql);
-          $data		= mysqli_fetch_array($query);
-          $total  	= mysqli_num_rows($query);
-          if ($total > 0){
-            echo "<meta http-equiv='refresh' content='0;url=ambilorder.php?no_transaksi=".$data['no_transaksi']."'>";
-          }
-        else{
-         ?>
-         <div class="table">
-          <?php
-          $sql1  		= "SELECT * FROM tb_transaksi inner join tb_pelanggan on tb_transaksi.pengirim = tb_pelanggan.id_pelanggan where status='Belum Terkirim' order by no_transaksi asc";                        
-          $query1  	= mysqli_query($db, $sql1);
-          $total		= mysqli_num_rows($query1);
-          if ($total == 0) {
-            echo"<center><h2>Belum Ada Data Order</h2></center>";
-          }
-          else{?>
+    </div><!-- /.box -->
 
-          <table id="lookup" class="table table-bordered table-hover">  
-           <thead bgcolor="eeeeee" align="center">
-            <tr>
-             <th>No Order</th>
-             <th>Nama Barang</th>
-             <th>Alamat Asal</th>
-             <th>Alamat Tujuan</th>	   
-             <th>Pengirim</th>
-             <th>Penerima</th>
-             <th>No Hp Penerima</th>
-             <th class="text-center"> Action </th> 	  
-           </tr>
-         </thead>
-         <?php
-         while($data = mysqli_fetch_array($query1)){
-          echo'<tr>
-          <td>	'. $data['no_transaksi'].'   	</td>
-          <td>	'. $data['nama_barang'].'		</td>
-          <td>	'. $data['alamat_asal'].'		</td>
-          <td>	'. $data['alamat_tujuan'].'   	</td>
-          <td>	'. $data['nama_pelanggan'].'   	</td>
-          <td>	'. $data['penerima'].'			</td>
-          <td>	'. $data['no_hp_penerima'].'	</td>
-          <td style="text-align:center;"><a href=detail-order.php?no_transaksi='.$data['no_transaksi'].'>Detail &nbsp|</a>
-          <a onclick="return confirm ("Ingin melanjutkan ke proses selanjutnya.? \nPengiriman tidak dapat dibatalkan!");" href=ambilorder.php?no_transaksi='.$data['no_transaksi'].'>|&nbsp Antar</a></td>
-          </tr>';
-        }
-        ?>
-        <tbody>		 
-        </tbody>
-      </table>
-      <?php } ?>
-    </div>
-    <?php } ?>
-  </div><!-- /.box-body -->
-</div><!-- /.box -->
-
-</section><!-- /.Left col -->
+  </section><!-- /.Left col -->
 </div><!-- /.row (main row) -->
 
 </section><!-- /.content -->
@@ -168,13 +154,14 @@ include "login/ceksession.php";?>
      <script src="../assets/dist/js/app.min.js"></script>
      <!-- AdminLTE for demo purposes -->
      <script src="../assets/dist/js/demo.js"></script>
-	  <!--<script type="text/javascript"> 
+	  <script type="text/javascript"> 
 
             $(function () {
                 $("#lookup").dataTable({"lengthMenu":[25,50,75,100],"pageLength":25});
             });
   
    
-          </script>-->
+          </script>
+
   </body>
 </html>

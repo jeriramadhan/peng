@@ -252,8 +252,11 @@ $nohp = preg_replace($ptn, $rpltxt, $no); ?>
 <input type="hidden" id="start" size="50" placeholder="<?php echo $data['alamat_asal']?>" value="<?php echo $data['alamat_asal']?>" readonly>
 <input type="hidden" id="end" size="50" placeholder="<?php echo $data['alamat_tujuan']?>" value="<?php echo $data['alamat_tujuan']?>" readonly>
 <br>
+						<div class="pull-right">
+						<a href="cetak_order.php" class="btn btn-info btn-fill btn-sm">Cetak<i class="fa fa-print"></i></a>
+					</div>
 <!-- <a class="btn btn-primary" href="https://api.callmebot.com/whatsapp.php?phone=<?php echo $nohp?>&text=Pesanan+<?php echo $no_transaksi ?>+Sedang Proses+Pengantaran+Oleh +<?php echo $_SESSION['nama']?>+Menuju+Ke+<?php echo $data['alamat_tujuan']?>&apikey=961961"> Kirim Notifikasi</a> -->
-<a class="btn btn-warning" href="https://api.callmebot.com/whatsapp.php?phone=<?php echo $nohp?>&text=Sistem+Notifikasi+Pengiriman%0D%0AID+Pesanan+%3A+<?php echo $no_transaksi ?>%0D%0AStatus+%3A+<?php echo $data['status']?>%0D%0ADikirim+oleh+kurir+%3A+<?php echo $_SESSION['nama']?>%0D%0AMenuju+%3A+<?php echo $data['alamat_tujuan']?>%0D%0ASelengkapnya+%3A+https://pengiriman.jtech.my.id/pelanggan/detail-orderterkirim2.php?no_transaksi=<?php echo $no_transaksi ?>&apikey=961961">Kirim Notifikasi</a>
+<a class="btn btn-warning" href="https://wa.me/<?php echo $nohp?>&text=Sistem+Notifikasi+Pengiriman%0D%0AID+Pesanan+%3A+<?php echo $no_transaksi ?>%0D%0AStatus+%3A+<?php echo $data['status']?>%0D%0ADikirim+oleh+kurir+%3A+<?php echo $_SESSION['nama']?>%0D%0AMenuju+%3A+<?php echo $data['alamat_tujuan']?>%0D%0ASelengkapnya+%3A+https://pengiriman.jtech.my.id/pelanggan/detail-orderterkirim2.php?no_transaksi=<?php echo $no_transaksi ?>&apikey=961961">Kirim Notifikasi</a>
 <br>
 <br>
 <button id="lihat">Lihat Rute Pengiriman</button>

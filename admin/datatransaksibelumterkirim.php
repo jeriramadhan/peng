@@ -71,6 +71,7 @@ include "login/ceksession.php";
                   <h3 class="box-title">Data Transaksi Belum Terkirim</h3>
                   <div class="box-tools pull-right"></div> 
                 </div><!-- /.box-header -->
+                <button onclick="window.print()">Cetak</button>
               <div class="box-body">
 
                 <!-- <form action='admin.php' method="POST">
@@ -82,7 +83,7 @@ include "login/ceksession.php";
           <div class="table">
             <?php
             include '../koneksi/koneksi.php';
-            $sql1  		= "SELECT * FROM tb_transaksi inner join tb_pelanggan on tb_transaksi.pengirim = tb_pelanggan.id_pelanggan where status NOT LIKE 'Terkirim' order by no_transaksi asc";                        
+            $sql1  		= "SELECT * FROM tb_transaksi inner join tb_pelanggan on tb_transaksi.pengirim = tb_pelanggan.id_pelanggan where status NOT LIKE 'Terkirim' and status NOT LIKE '%Proses%' order by no_transaksi asc";                        
             $query1  	= mysqli_query($db, $sql1);
             $total  	= mysqli_num_rows($query1);
             if ($total == 0) {

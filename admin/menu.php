@@ -49,6 +49,7 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="datatransaksibelumterkirim.php"><i class="fa fa-circle-o"></i>Transaksi Belum Terkirim</a></li>
+                <li><a href="datatransaksisedangberlangsung.php"><i class="fa fa-circle-o"></i>Transaksi Sedang Berlangsung</a></li>
                 <li><a href="datatransaksiterkirim.php"><i class="fa fa-circle-o"></i>Transaksi Terkirim</a></li>
               </ul>
             </li>

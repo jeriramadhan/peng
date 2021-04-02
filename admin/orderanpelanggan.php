@@ -67,6 +67,7 @@ include "login/ceksession.php";
               <!-- TO DO List -->
               <div class="box box-primary">
                 <div class="box-header">
+                
                   <i class="ion ion-clipboard"></i>
                   <?php
                   include '../koneksi/koneksi.php';
@@ -79,6 +80,7 @@ include "login/ceksession.php";
                   <div class="box-tools pull-right">
                   </div> 
                 </div><!-- /.box-header -->
+                <button onclick="window.print()">Cetak</button>
                 
                 <div class="box-body">
                 <!-- <form action='admin.php' method="POST">
