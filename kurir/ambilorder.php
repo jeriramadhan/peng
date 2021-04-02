@@ -246,7 +246,7 @@ google.maps.event.addDomListener(window, 'load', init);
 <?php 
 $no = $data['no_hp_penerima'];
 $ptn = "/^0/"; 
-$rpltxt = "+62";  // Replacement string
+$rpltxt = "62";  // Replacement string
 $nohp = preg_replace($ptn, $rpltxt, $no); ?>
 <body>
 <input type="hidden" id="start" size="50" placeholder="<?php echo $data['alamat_asal']?>" value="<?php echo $data['alamat_asal']?>" readonly>

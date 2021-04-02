@@ -107,7 +107,7 @@ include "login/ceksession.php";?>
            while($data = mysqli_fetch_array($query1)){
                          $no = $data['no_hp_penerima'];
             $ptn = "/^0/"; 
-            $rpltxt = "+62";  // Replacement string
+            $rpltxt = "62";  // Replacement string
             $nohp = preg_replace($ptn, $rpltxt, $no);
             echo'<tr>
             <td>	'. $data['no_transaksi'].'   	</td>
