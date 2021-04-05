@@ -124,8 +124,9 @@ include "login/ceksession.php";?>
          else{
            echo $data['penilaian'];
          }
-         echo'	</td>
-                     '?><td><a class="btn btn-warning" href="https://wa.me/<?php echo $nohp?>?text=Sistem+Notifikasi+Pengiriman%0D%0AID+Pesanan+%3A+<?php echo $no_transaksi ?>%0D%0AStatus+%3A+<?php echo $data['status']?>%0D%0ADikirim+oleh+kurir+%3A+<?php echo $_SESSION['nama']?>%0D%0AMenuju+%3A+<?php echo $data['alamat_tujuan']?>%0D%0ASelengkapnya+%3A+https://pengiriman.jtech.my.id/pelanggan/detail-orderterkirim2.php?no_transaksi=<?php echo $no_transaksi ?>">Kirim Notifikasi</a></td>
+        echo'	</td>
+                     '?><td><a class="btn btn-warning" href="https://wa.me/<?php echo $nohp?>?text=Sistem+Notifikasi+Pengiriman%0D%0AID+Pesanan+%3A+<?php echo $no_transaksi ?>%0D%0AStatus+%3A+<?php echo $data['status']?>%0D%0ADikirim+oleh+kurir+%3A+<?php echo $_SESSION['nama']?>%0D%0AMenuju+%3A+<?php echo $data['alamat_tujuan']?>%0D%0ASelengkapnya+%3A+https://pengiriman.jtech.my.id/pelanggan/detail-orderterkirim2.php?no_transaksi=<?php echo $no_transaksi ?>">Kirim Notifikasi</a></td><?php echo'
+         <td style="text-align:center;"><a href=detail-orderterkirim.php?no_transaksi='.$data['no_transaksi'].'>Detail</a></td>
          </tr>';
        }
        ?>
