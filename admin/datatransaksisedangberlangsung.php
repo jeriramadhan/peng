@@ -83,7 +83,8 @@ include "login/ceksession.php";
           <div class="table">
             <?php
             include '../koneksi/koneksi.php';
-            $sql1  		= "SELECT * FROM tb_transaksi inner join tb_pelanggan on tb_transaksi.pengirim = tb_pelanggan.id_pelanggan where status LIKE '%Proses%' order by no_transaksi asc";                        
+            $sql1  		= "SELECT * FROM tb_transaksi inner join tb_pelanggan on tb_transaksi.pengirim = tb_pelanggan.id_pelanggan
+            inner join tb_kurir on tb_transaksi.kurir = tb_kurir.id_kurir where status LIKE '%Proses%' order by no_transaksi asc";                        
             $query1  	= mysqli_query($db, $sql1);
             $total  	= mysqli_num_rows($query1);
             if ($total == 0) {
@@ -99,6 +100,7 @@ include "login/ceksession.php";
                  <th>Alamat Tujuan</th>	   
                  <th>Pengirim</th>
                  <th>Penerima</th>
+                 <th>Kurir</th>
                  <th>status</th>
                  <th class="text-center"> Action </th>	  
                </tr>
@@ -112,6 +114,7 @@ include "login/ceksession.php";
               <td>	'. $data['alamat_tujuan'].'  		</td>
               <td>	'. $data['nama_pelanggan'].'  		</td>
               <td>	'. $data['penerima'].'				</td>
+              <td>	'. $data['nama_kurir'].'				</td>
               <td>	'. $data['status'].'				</td>
               <td style="text-align:center;">
               <a href=detail-transaksibelumterkirim.php?no_transaksi='.$data['no_transaksi'].'>Detail</a></td>

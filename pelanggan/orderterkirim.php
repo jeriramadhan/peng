@@ -185,7 +185,7 @@ google.maps.event.addDomListener(window, 'load', init);
 <body>
 <input type="hidden" id="start" size="50" placeholder="<?php echo $data['alamat_asal']?>" value="<?php echo $data['alamat_asal']?>" readonly>
 <input type="hidden" id="end" size="50" placeholder="<?php echo $data['alamat_tujuan']?>" value="<?php echo $data['alamat_tujuan']?>" readonly>
-<button id="lihat">Lihat Rute Pengiriman</button>
+<!-- <button id="lihat">Lihat Rute Pengiriman</button> -->
 <br><br>
 <div id="maps" style="width: 800px; height: 400px;"></div>
  </div><!-- /.box-body -->

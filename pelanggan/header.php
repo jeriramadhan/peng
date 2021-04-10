@@ -6,12 +6,14 @@
 ?>
 <header class="main-header">
   <!-- Logo -->
-  <a href="index.php" class="logo">
-    <!-- mini logo for sidebar mini 50x50 pixels -->
-    <span class="logo-mini"><b>e</b>Kurir</span>
-    <!-- logo for regular state and mobile devices -->
-    <span class="logo-lg"><b>Aplikasi</b> e-Kurir PT. Fajar Cahaya Media </span>
-  </a>
+  	<a href="index.php" class="logo"> 
+		<!-- mini logo for sidebar mini 50x50 pixels -->
+		<span class="logo-mini"><img style="max-width:60px;"
+             src="../images/rmlogo.png"></span>
+		<!-- logo for regular state and mobile devices -->
+		<span class="logo-lg"><img style="max-width:60px;"
+             src="../images/rmlogo.png"> e-Kurir FCM </span>
+	</a>
   <!-- Header Navbar: style can be found in header.less -->
   <nav class="navbar navbar-static-top" role="navigation">
     <!-- Sidebar toggle button-->
