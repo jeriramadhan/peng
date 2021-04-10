@@ -71,9 +71,9 @@
                   <h3 class="box-title">Data Transaksi Terkirim</h3>
                   <div class="box-tools pull-right"></div> 
                 </div><!-- /.box-header -->
-                <button onclick="window.print()">Cetak</button>
               <div class="box-body">
-
+<a class="btn btn-info" href="javascript:void(0);"
+    onclick="window.open('reportdataterkirim.php','nama_window_pop_up','size=800,height=800,scrollbars=yes,resizeable=no')">Cetak</a>
                 <!-- <form action='admin.php' method="POST">
           
 	       <input type='text' class="form-control" style="margin-bottom: 4px;" name='qcari' placeholder='Cari berdasarkan User ID dan Username' required /> 

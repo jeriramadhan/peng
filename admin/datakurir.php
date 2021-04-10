@@ -70,6 +70,9 @@ include "login/ceksession.php";
     								<div class="box-tools pull-right"></div> 
     							</div><!-- /.box-header -->
     						<div class="box-body">
+								<br>
+               <a class="btn btn-info" href="javascript:void(0);"
+    onclick="window.open('reportdatakurir.php','nama_window_pop_up','size=800,height=800,scrollbars=yes,resizeable=no')">Cetak</a>
                 <!-- <form action='admin.php' method="POST">
           
 	       <input type='text' class="form-control" style="margin-bottom: 4px;" name='qcari' placeholder='Cari berdasarkan User ID dan Username' required /> 
