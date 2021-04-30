@@ -50,15 +50,45 @@ ob_start();
 
           <div class="table">
             <?php
+            $date1 = $_GET['date1'];
+            $date2 = $_GET['date2'];
             include '../koneksi/koneksi.php';
-            $sql1  		= "SELECT * FROM tb_pelanggan inner join (tb_transaksi inner join tb_kurir on tb_transaksi.kurir = tb_kurir.id_kurir) on tb_pelanggan.id_pelanggan = tb_transaksi.pengirim where status = 'Terkirim' order by no_transaksi desc";        
+            if(!empty($date1) && !empty($date2)){
+            $sql1  		= "SELECT * FROM tb_pelanggan inner join (tb_transaksi inner join tb_kurir on tb_transaksi.kurir = tb_kurir.id_kurir) on tb_pelanggan.id_pelanggan = tb_transaksi.pengirim where tb_transaksi.tgl_transaksi BETWEEN '$date1' and '$date2' and status = 'Terkirim' order by no_transaksi desc";
+            }else{
+              $sql1  		= "SELECT * FROM tb_pelanggan inner join (tb_transaksi inner join tb_kurir on tb_transaksi.kurir = tb_kurir.id_kurir) on tb_pelanggan.id_pelanggan = tb_transaksi.pengirim where status = 'Terkirim' order by no_transaksi desc";
+            }        
             $query1  	= mysqli_query($db, $sql1);
             $total  	= mysqli_num_rows($query1);
             if ($total == 0) {
               echo"<center><h2>Tidak Ada Transaksi Belum Terkirim</h2></center>";
             }
             else{?>
-            <table align="center">  
+            <style>
+            #customers {
+              table-layout: auto;
+  width: 100%; 
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}</style>
+            <table id="customers">  
              <thead bgcolor="eeeeee" align="center">
                <tr>
                  	<th style="border:black 1px solid;">No Transaksi</th>

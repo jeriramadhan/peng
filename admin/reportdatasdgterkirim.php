@@ -50,16 +50,45 @@ ob_start();
 
           <div class="table">
             <?php
+            $date1 = $_GET['date1'];
+            $date2 = $_GET['date2'];
             include '../koneksi/koneksi.php';
-            $sql1  		= "SELECT * FROM tb_transaksi inner join tb_pelanggan on tb_transaksi.pengirim = tb_pelanggan.id_pelanggan
-            inner join tb_kurir on tb_transaksi.kurir = tb_kurir.id_kurir where status LIKE '%Proses%' order by no_transaksi asc";                      
+            if(!empty($date1) && !empty($date2)){
+            $sql1  		= "SELECT * FROM tb_pelanggan inner join (tb_transaksi inner join tb_kurir on tb_transaksi.kurir = tb_kurir.id_kurir) on tb_pelanggan.id_pelanggan = tb_transaksi.pengirim where tb_transaksi.tgl_transaksi BETWEEN '$date1' and '$date2' and status LIKE '%Proses%' order by no_transaksi desc";
+            }else{
+              $sql1  		= "SELECT * FROM tb_pelanggan inner join (tb_transaksi inner join tb_kurir on tb_transaksi.kurir = tb_kurir.id_kurir) on tb_pelanggan.id_pelanggan = tb_transaksi.pengirim where status LIKE '%Proses%' order by no_transaksi desc";
+            }        
             $query1  	= mysqli_query($db, $sql1);
             $total  	= mysqli_num_rows($query1);
             if ($total == 0) {
               echo"<center><h2>Tidak Ada Transaksi Belum Terkirim</h2></center>";
             }
             else{?>
-            <table align="center">  
+            <style>
+            #customers {
+              table-layout: auto;
+  width: 100%; 
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #4CAF50;
+  color: white;
+}</style>
+            <table id="customers">  
              <thead bgcolor="eeeeee" align="center">
                <tr>
                  	<th style="border:black 1px solid;">No Transaksi</th>
@@ -83,7 +112,7 @@ ob_start();
               echo'<tr>
               	<td style="border:black 1px solid;">	'. $data['no_transaksi'].'   		</td>
               	<td style="border:black 1px solid;">	'. $data['nama_barang'].'			</td>
-              	<td style="border:black 1px solid;">	'. $data['alamat_asal'].'			</td>
+              	<td style="border:black 1px solid; ">	'. $data['alamat_asal'].'			</td>
               	<td style="border:black 1px solid;">	'. $data['alamat_tujuan'].'  		</td>
               	<td style="border:black 1px solid;">	'. $data['nama_pelanggan'].'  		</td>
               	<td style="border:black 1px solid;">	'. $data['penerima'].'				</td>
@@ -118,7 +147,7 @@ $content = '<page style="font-family: freeserif">'.($content).'</page>';
  require_once(dirname(__FILE__).'../../html2pdf/html2pdf.class.php');
  try
  {
-  $html2pdf = new HTML2PDF('P','A4','en', false, 'ISO-8859-15',array(5, 0, 20, 0));
+  $html2pdf = new HTML2PDF('L','A4','en', false, 'ISO-8859-15',array(5, 0, 20, 0));
   $html2pdf->setDefaultFont('Arial');
   $html2pdf->writeHTML($content, isset($_GET['vuehtml']));
   $html2pdf->Output($filename);

@@ -47,8 +47,37 @@ ob_start();
               echo"<center><h2>Belum Ada Pelanggan Terdaftar</h2></center>";
             }
             else{?>
-                  
-                  <table style="border:black 1px solid;" align="center">
+                  						<style>
+            table.d {
+  table-layout: fixed;
+  width: 100%;  
+}
+            #customers {
+              align: center;
+              table-layout: fixed;
+  width: 200px; 
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #4CAF50;
+  color: white;
+}</style>
+          	<table align="center" id="customers">  
                     <thead>
                       <tr>
                         <th style="border:black 1px solid;">id</th>

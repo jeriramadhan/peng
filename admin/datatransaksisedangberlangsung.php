@@ -71,63 +71,86 @@ include "login/ceksession.php";
                   <h3 class="box-title">Data Transaksi Sedang Berlangsung</h3>
                   <div class="box-tools pull-right"></div> 
                 </div><!-- /.box-header -->
-                
-              <div class="box-body">
-<a class="btn btn-info" href="javascript:void(0);"
-    onclick="window.open('reportdatasdgterkirim.php','nama_window_pop_up','size=800,height=800,scrollbars=yes,resizeable=no')">Cetak</a>
-                <!-- <form action='admin.php' method="POST">
-          
-	       <input type='text' class="form-control" style="margin-bottom: 4px;" name='qcari' placeholder='Cari berdasarkan User ID dan Username' required /> 
-           <input type='submit' value='Cari Data' class="btn btn-sm btn-primary" /> <a href='admin.php' class="btn btn-sm btn-success" >Refresh</i></a>
-          	</div>
-          </form>-->
+                <div class="box-body">
+          <h4>Pilih Periode</h4>
           <div class="table">
+              <form method="POST" action="" class="form-inline mt-3">
+     <label for="date1">Tanggal mulai </label>
+     <input type="date" name="date1" id="date1" class="form-control mr-2">
+     <label for="date2">sampai </label>
+     <input type="date" name="date2" id="date2" class="form-control mr-2">
+     <button type="submit" name="submit" class="btn btn-primary">Cari</button>
+    </form>
+    <br>
             <?php
             include '../koneksi/koneksi.php';
-            $sql1  		= "SELECT * FROM tb_transaksi inner join tb_pelanggan on tb_transaksi.pengirim = tb_pelanggan.id_pelanggan
-            inner join tb_kurir on tb_transaksi.kurir = tb_kurir.id_kurir where status LIKE '%Proses%' order by no_transaksi asc";                        
-            $query1  	= mysqli_query($db, $sql1);
-            $total  	= mysqli_num_rows($query1);
-            if ($total == 0) {
-              echo"<center><h2>Tidak Ada Transaksi Belum Terkirim</h2></center>";
-            }
-            else{?>
+          if (isset($_POST['submit'])) {
+ $date1 = $_POST['date1'];
+ $date2 = $_POST['date2'];
+
+ if (!empty($date1) && !empty($date2)) {
+   
+  // perintah tampil data berdasarkan range tanggal
+  $q = mysqli_query($db, "SELECT * FROM tb_transaksi inner join tb_pelanggan on tb_transaksi.pengirim = tb_pelanggan.id_pelanggan
+            inner join tb_kurir on tb_transaksi.kurir = tb_kurir.id_kurir where status LIKE '%Proses%' and tgl_transaksi BETWEEN '$date1' and '$date2'"); 
+ } else {
+  // perintah tampil semua data
+  $q = mysqli_query($db, "SELECT * FROM tb_transaksi inner join tb_pelanggan on tb_transaksi.pengirim = tb_pelanggan.id_pelanggan
+            inner join tb_kurir on tb_transaksi.kurir = tb_kurir.id_kurir where status LIKE '%Proses%'"); 
+ }
+} else {
+ // perintah tampil semua data
+ $q = mysqli_query($db, "SELECT * FROM tb_transaksi inner join tb_pelanggan on tb_transaksi.pengirim = tb_pelanggan.id_pelanggan
+            inner join tb_kurir on tb_transaksi.kurir = tb_kurir.id_kurir where status LIKE '%Proses%'");
+}
+?>
+<a class="btn btn-info" href="javascript:void(0);"
+    onclick="window.open('reportdatasdgterkirim.php?date1=<?php echo $date1?>&date2=<?php echo $date2?>','nama_window_pop_up','size=800,height=800,scrollbars=yes,resizeable=no')">Cetak</a>	
             <table id="lookup" class="table table-bordered table-hover">  
              <thead bgcolor="eeeeee" align="center">
-               <tr>
-                 <th>No Transaksi</th>
-                 <th>Nama Barang</th>
-                 <th>Alamat Asal</th>
-                 <th>Alamat Tujuan</th>	   
-                 <th>Pengirim</th>
-                 <th>Penerima</th>
-                 <th>Kurir</th>
-                 <th>status</th>
-                 <th class="text-center"> Action </th>	  
-               </tr>
-             </thead>
-             <?php
-             while($data = mysqli_fetch_array($query1)){
-              echo'<tr>
-              <td>	'. $data['no_transaksi'].'   		</td>
-              <td>	'. $data['nama_barang'].'			</td>
-              <td>	'. $data['alamat_asal'].'			</td>
-              <td>	'. $data['alamat_tujuan'].'  		</td>
-              <td>	'. $data['nama_pelanggan'].'  		</td>
-              <td>	'. $data['penerima'].'				</td>
-              <td>	'. $data['nama_kurir'].'				</td>
-              <td>	'. $data['status'].'				</td>
-              <td style="text-align:center;">
-              <a href=detail-transaksibelumterkirim.php?no_transaksi='.$data['no_transaksi'].'>Detail</a></td>
-              </tr>';
-            }
-            ?>
-            <tbody>		 
-            </tbody>
-          </table>
-          <?php } ?>
-        </div>
-      </div><!-- /.box-body -->
+              <tr>
+               <th>No Transaksi</th>
+               <th>Nama Barang</th>
+               <th>Alamat Asal</th>
+               <th>Alamat Tujuan</th>
+               <th>Pengirim</th>
+               <th>Penerima</th>
+               <th>Kurir</th>
+               <th>Tanggal Transaksi</th>
+               <th>Penilaian</th>
+               <th class="text-center"> Action </th>	  
+             </tr>
+           </thead>
+           <?php
+           while($data = mysqli_fetch_array($q)){
+            echo'<tr>
+            <td>	'. $data['no_transaksi'].'   		</td>
+            <td>	'. $data['nama_barang'].'			</td>
+            <td>	'. $data['alamat_asal'].'			</td>
+            <td>	'. $data['alamat_tujuan'].'  		</td>
+            <td>	'. $data['nama_pelanggan'].'  		</td>
+            <td>	'. $data['penerima'].'				</td>
+            <td>	'. $data['nama_kurir'].'			</td>
+            <td>	'. $data['tgl_transaksi'].'			</td>
+            <td>';
+            if($data['penilaian']==0){
+             echo'Belum Ada Penilaian';
+           }
+         else{
+           echo $data['penilaian'];
+         }
+         echo'	</td>
+         <td style="text-align:center;">
+         <a href=detail-transaksiterkirim.php?no_transaksi='.$data['no_transaksi'].'>Detail</a></td>
+         </tr>';
+       }
+       ?>
+       <tbody>		 
+       </tbody>
+     </table>
+   </div>
+ </div><!-- /.box-body -->
+              
 
     </div><!-- /.box -->
 
