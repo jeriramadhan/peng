@@ -94,7 +94,7 @@ ob_start();
   background-color: #4CAF50;
   color: white;
 }</style>
-            <table style="table-layout: fixed; width: 100%;" id="customers">  
+            <table align="center" id="customers">  
              <thead bgcolor="eeeeee" align="center">
                <tr>
                  	<th style="border:black 1px solid;">No Transaksi</th>
